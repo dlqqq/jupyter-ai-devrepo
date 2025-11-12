@@ -13,3 +13,6 @@
 [submodule "jupyterlab-commands-toolkit"]
 	path = jupyterlab-commands-toolkit
 	url = git@github.com:jupyter-ai-contrib/jupyterlab-commands-toolkit.git
+[submodule "jupyter-ai-jupyternaut"]
+	path = jupyter-ai-jupyternaut
+	url = git@github.com:jupyter-ai-contrib/jupyter-ai-jupyternaut.git
