@@ -7,3 +7,6 @@
 [submodule "jupyter-ai-litellm"]
 	path = jupyter-ai-litellm
 	url = git@github.com:jupyter-ai-contrib/jupyter-ai-litellm.git
+[submodule "jupyter-ai-chat-commands"]
+	path = jupyter-ai-chat-commands
+	url = git@github.com:jupyter-ai-contrib/jupyter-ai-chat-commands.git
