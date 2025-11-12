@@ -1,0 +1,7 @@
+*.egg-info
+build/
+.python-version
+
+# explicitly ignore uv.lock
+# this is a dev repo & doesn't need a committed lockfile
+uv.lock

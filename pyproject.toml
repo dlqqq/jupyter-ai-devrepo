@@ -1,0 +1,24 @@
+[project]
+name = "jupyter-ai-devrepo"
+version = "0.0.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "jupyter_ai_router",
+    "jupyter_ai_persona_manager",
+    "jupyter_ai_litellm",
+    "jupyter_ai_chat_commands",
+    "jupyterlab_commands_toolkit",
+]
+
+[tool.uv.sources]
+jupyter_ai_router = { workspace = true }
+jupyter_ai_persona_manager = { workspace = true }
+jupyter_ai_litellm = { workspace = true }
+jupyter_ai_chat_commands = { workspace = true }
+jupyterlab_commands_toolkit = { workspace = true }
+
+[tool.uv.workspace]
+members = ["jupyter*/"]
+exclude = ["jupyter_ai_devrepo.egg*"]
