@@ -1,3 +1,6 @@
 [submodule "jupyter-ai-router"]
 	path = jupyter-ai-router
 	url = git@github.com:jupyter-ai-contrib/jupyter-ai-router.git
+[submodule "jupyter-ai-persona-manager"]
+	path = jupyter-ai-persona-manager
+	url = git@github.com:jupyter-ai-contrib/jupyter-ai-persona-manager.git
