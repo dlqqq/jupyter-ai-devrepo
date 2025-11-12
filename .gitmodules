@@ -4,3 +4,6 @@
 [submodule "jupyter-ai-persona-manager"]
 	path = jupyter-ai-persona-manager
 	url = git@github.com:jupyter-ai-contrib/jupyter-ai-persona-manager.git
+[submodule "jupyter-ai-litellm"]
+	path = jupyter-ai-litellm
+	url = git@github.com:jupyter-ai-contrib/jupyter-ai-litellm.git
