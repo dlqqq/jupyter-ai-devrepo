@@ -11,7 +11,6 @@ Developers should clone this repo.
 ```
 git clone --recurse-submodules <url>
 cd jupyter-ai-devrepo/
-git submodule update --remote
 ```
 
 ### 1. Create new Python dev environment
@@ -26,18 +25,24 @@ micromamba create -n $env_name python=3.12 nodejs=24 jupyterlab=4 uv
 micromamba activate $env_name
 ```
 
-### 2. Install the package
+### 2. Pull in latest changes
+
+```
+just sync
+```
+
+### 3. Install all packages
 
 This automatically installs each of the packages in editable mode.
 
 ```
-uv pip install .
+just dev-install-all
 ```
-
-### 3. Enable local labextension development
-
-TODO.
 
 ## Useful commands
 
-- `git submodule update --remote`: pull in all upstream changes
+- `just sync`: switch to `main` in all submodules and pull in all upstream changes
+
+- `just build-all`: build all frontend assets in every submodule
+
+- `just dev-install-all`: perform an editable, developer installation of all packages
