@@ -10,6 +10,7 @@ dependencies = [
     "jupyter_ai_litellm",
     "jupyter_ai_chat_commands",
     "jupyterlab_commands_toolkit",
+    "jupyter_ai_jupyternaut",
 ]
 
 [tool.uv.sources]
@@ -18,6 +19,7 @@ jupyter_ai_persona_manager = { workspace = true }
 jupyter_ai_litellm = { workspace = true }
 jupyter_ai_chat_commands = { workspace = true }
 jupyterlab_commands_toolkit = { workspace = true }
+jupyter_ai_jupyternaut = { workspace = true }
 
 [tool.uv.workspace]
 members = ["jupyter*/"]
