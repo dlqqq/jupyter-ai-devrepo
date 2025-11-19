@@ -9,10 +9,17 @@ build-all:
 enable-server-extensions:
     @# $name := name of submodule in the current iteration
     @# ${name//-/_} := name with all '-' chars replaced with '_'
-    git submodule foreach 'uv run --project .. jupyter server extension enable ${name//-/_}'
+    @# This `foreach` call skips `jupyter-chat` as it is a special case
+    git submodule foreach 'if [[ $name == "jupyter-chat" ]]; then exit 0; fi; uv run --project .. jupyter server extension enable ${name//-/_}'
+    @# Enable jupyter-chat server extension imperatively
+    uv run jupyter server extension enable jupyterlab_chat
+
 
 enable-lab-extensions:
-    git submodule foreach 'if [ -f package.json ]; then uv run --project .. jupyter labextension develop . --overwrite; else echo "Skipping enabling labextension in $name as it lacks a package.json file" ; fi'
+    @# This `foreach` call skips `jupyter-chat` as it is a special case
+    git submodule foreach 'if [[ $name == "jupyter-chat" ]]; then exit 0; fi; if [ -f package.json ]; then uv run --project .. jupyter labextension develop . --overwrite; else echo "Skipping enabling labextension in $name as it lacks a package.json file" ; fi'
+    @# Enable jupyter-chat lab extension imperatively
+    uv run jupyter labextension develop jupyter-chat/python/jupyterlab-chat --overwrite
 
 enable-extensions: enable-server-extensions enable-lab-extensions
 

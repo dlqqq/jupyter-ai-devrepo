@@ -19,3 +19,6 @@
 [submodule "jupyter-server-documents"]
 	path = jupyter-server-documents
 	url = git@github.com:jupyter-ai-contrib/jupyter-server-documents.git
+[submodule "jupyter-chat"]
+	path = jupyter-chat
+	url = git@github.com:jupyterlab/jupyter-chat.git
