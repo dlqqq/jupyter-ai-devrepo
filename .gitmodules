@@ -16,3 +16,6 @@
 [submodule "jupyter-ai-jupyternaut"]
 	path = jupyter-ai-jupyternaut
 	url = git@github.com:jupyter-ai-contrib/jupyter-ai-jupyternaut.git
+[submodule "jupyter-server-documents"]
+	path = jupyter-server-documents
+	url = git@github.com:jupyter-ai-contrib/jupyter-server-documents.git

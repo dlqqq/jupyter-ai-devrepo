@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "jupyterlab>=4",
+    "jupyter_server_documents",
     "jupyter_ai_router",
     "jupyter_ai_persona_manager",
     "jupyter_ai_litellm",
@@ -15,6 +16,7 @@ dependencies = [
 ]
 
 [tool.uv.sources]
+jupyter_server_documents = { workspace = true }
 jupyter_ai_router = { workspace = true }
 jupyter_ai_persona_manager = { workspace = true }
 jupyter_ai_litellm = { workspace = true }
