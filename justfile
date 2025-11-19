@@ -16,7 +16,7 @@ enable-lab-extensions:
 
 enable-extensions: enable-server-extensions enable-lab-extensions
 
-install: build-all && enable-extensions
+install: && build-all enable-extensions
     uv sync
 
 uninstall:
