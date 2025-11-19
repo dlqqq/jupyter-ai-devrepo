@@ -14,7 +14,6 @@ enable-server-extensions:
     @# Enable jupyter-chat server extension imperatively
     uv run jupyter server extension enable jupyterlab_chat
 
-
 enable-lab-extensions:
     @# This `foreach` call skips `jupyter-chat` as it is a special case
     git submodule foreach 'if [[ $name == "jupyter-chat" ]]; then exit 0; fi; if [ -f package.json ]; then uv run --project .. jupyter labextension develop . --overwrite; else echo "Skipping enabling labextension in $name as it lacks a package.json file" ; fi'

@@ -67,6 +67,8 @@ even if your current directory is inside of a submodule.
 
 - `just start`: start JupyterLab
 
+    - `Ctrl + Z` + `kill -9 %1` stops JupyterLab in case `Ctrl + C` does not work
+
 - `just sync`: switch to `main` in all submodules and pull in all upstream changes
 
 - `just build-all`: build all frontend assets in every submodule
