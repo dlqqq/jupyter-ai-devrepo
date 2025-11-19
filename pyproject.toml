@@ -14,6 +14,7 @@ dependencies = [
     "jupyter_ai_chat_commands",
     "jupyterlab_commands_toolkit",
     "jupyter_ai_jupyternaut",
+    "jupyter_ai_claude_code",
 ]
 
 [tool.uv.sources]
@@ -25,6 +26,7 @@ jupyter_ai_litellm = { workspace = true }
 jupyter_ai_chat_commands = { workspace = true }
 jupyterlab_commands_toolkit = { workspace = true }
 jupyter_ai_jupyternaut = { workspace = true }
+jupyter_ai_claude_code = { workspace = true }
 
 [tool.uv.workspace]
 members = ["jupyter*/", "jupyter-chat/python/*"]
