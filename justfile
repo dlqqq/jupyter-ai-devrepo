@@ -6,17 +6,17 @@ build-all:
     @# important: the command passed to `foreach` must use single quotes to allow $name to be accessed
     git submodule foreach 'if [ -f package.json ]; then uv run --project .. jlpm && uv run --project .. jlpm build; else echo "Skipping build in $name as it lacks a package.json file"; fi'
 
-enable-all-server-extensions:
+enable-server-extensions:
     @# $name := name of submodule in the current iteration
     @# ${name//-/_} := name with all '-' chars replaced with '_'
     git submodule foreach 'uv run --project .. jupyter server extension enable ${name//-/_}'
 
-enable-all-lab-extensions:
+enable-lab-extensions:
     git submodule foreach 'if [ -f package.json ]; then uv run --project .. jupyter labextension develop . --overwrite; else echo "Skipping enabling labextension in $name as it lacks a package.json file" ; fi'
 
-enable-all-extensions: enable-all-server-extensions enable-all-lab-extensions
+enable-extensions: enable-server-extensions enable-lab-extensions
 
-dev-install-all: build-all && enable-all-extensions
+install: build-all && enable-extensions
     uv sync
 
 uninstall:

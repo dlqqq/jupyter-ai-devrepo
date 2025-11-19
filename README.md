@@ -49,7 +49,7 @@ just sync
 This command automatically installs each of the packages in editable mode.
 
 ```
-just dev-install-all
+just install
 ```
 
 ### 4. Start JupyterLab
@@ -71,8 +71,8 @@ even if your current directory is inside of a submodule.
 
 - `just build-all`: build all frontend assets in every submodule
 
-- `just dev-install-all`: perform an editable, developer installation of all packages
+- `just install`: perform an editable, developer installation of all packages
 
 - `just uninstall`: uninstall everything (useful for testing the `just` commands)
 
-- `just uninstall && just dev-install-all`: re-install everything (useful for fixing a broken venv)
+- `just uninstall && just install`: re-install everything (useful for fixing a broken venv)
