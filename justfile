@@ -2,15 +2,26 @@ sync:
     git submodule foreach "git switch main && git pull"
 
 build-all:
-    git submodule foreach "if [ -f package.json ]; then jlpm && jlpm build; else exit 0; fi"
+    @# uv run --project .. ensures we don't create another uv.lock & .venv file in every submodule
+    @# important: the command passed to `foreach` must use single quotes to allow $name to be accessed
+    git submodule foreach 'if [ -f package.json ]; then uv run --project .. jlpm && uv run --project .. jlpm build; else echo "Skipping build in $name as it lacks a package.json file"; fi'
 
-enable-all-extensions:
+enable-all-server-extensions:
     @# $name := name of submodule in the current iteration
     @# ${name//-/_} := name with all '-' chars replaced with '_'
-    @# important: the command passed to foreach must use single quotes to allow $name to be accessed
-    git submodule foreach 'jupyter server extension enable ${name//-/_}'
-    git submodule foreach 'if [ -f package.json ]; then jupyter labextension develop . --overwrite; else exit 0; fi'
+    git submodule foreach 'uv run --project .. jupyter server extension enable ${name//-/_}'
+
+enable-all-lab-extensions:
+    git submodule foreach 'if [ -f package.json ]; then uv run --project .. jupyter labextension develop . --overwrite; else echo "Skipping enabling labextension in $name as it lacks a package.json file" ; fi'
+
+enable-all-extensions: enable-all-server-extensions enable-all-lab-extensions
 
 dev-install-all: build-all && enable-all-extensions
-    uv pip install .
-    echo "Developer installation complete!"
+    uv sync
+
+uninstall:
+    rm -rf .venv
+
+start:
+    @# this always runs from the devrepo root
+    uv run jupyter lab

@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "jupyterlab>=4",
     "jupyter_ai_router",
     "jupyter_ai_persona_manager",
     "jupyter_ai_litellm",
