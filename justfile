@@ -53,6 +53,7 @@ install: && build-all enable-extensions
 
 uninstall:
     rm -rf .venv
+    rm uv.lock
 
 start:
     @# this always runs from the devrepo root
