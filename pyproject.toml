@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "pip",
     "jupyterlab>=4",
     "jupyter_server_documents",
     "jupyterlab_chat",
