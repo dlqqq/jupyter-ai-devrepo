@@ -55,6 +55,9 @@ uninstall:
     rm -rf .venv
     rm uv.lock
 
+clean:
+    find . -name "*.chat" -type f -delete
+
 start:
     @# this always runs from the devrepo root
     uv run jupyter lab
