@@ -56,7 +56,9 @@ uninstall:
     rm uv.lock
 
 clean:
-    find . -name "*.chat" -type f -delete
+    rm *.chat ; exit 0
+    rm *.qasm ; exit 0
+    rm *.ipynb ; exit 0
 
 start:
     @# this always runs from the devrepo root
