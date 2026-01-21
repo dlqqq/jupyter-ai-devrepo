@@ -25,3 +25,6 @@
 [submodule "jupyter-ai-claude-code"]
 	path = jupyter-ai-claude-code
 	url = git@github.com:jupyter-ai-contrib/jupyter-ai-claude-code.git
+[submodule "jupyter-ai-acp-client"]
+	path = jupyter-ai-acp-client
+	url = ./jupyter-ai-acp-client
