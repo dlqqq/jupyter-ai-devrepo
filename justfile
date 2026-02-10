@@ -1,4 +1,10 @@
+############################################################################
+# Global recipes that work anywhere under this devrepo
+
 sync:
+    uv sync
+
+pull-all:
     git submodule foreach "git switch main && git pull"
 
 build-all:
@@ -48,18 +54,58 @@ enable-lab-extensions:
 
 enable-extensions: enable-server-extensions enable-lab-extensions
 
-install: && build-all enable-extensions
+install-all: && build-all enable-extensions
     uv sync
 
-uninstall:
+uninstall-all:
     rm -rf .venv
     rm uv.lock
 
+reinstall-all: install-all && uninstall-all
+
 clean:
-    rm *.chat ; exit 0
-    rm *.qasm ; exit 0
-    rm *.ipynb ; exit 0
+    -rm *.chat 2>/dev/null
+    -rm *.qasm 2>/dev/null
+    -rm *.ipynb 2>/dev/null
 
 start:
     @# this always runs from the devrepo root
     uv run jupyter lab
+
+############################################################################
+# Local recipes that only work in a submodule
+
+verify-in-submodule:
+    #!/usr/bin/env bash
+    cdir={{invocation_directory()}}
+    rootdir={{justfile_directory()}}
+
+    # exit early if not in submodule
+    relative="${cdir#$rootdir/}"
+    if [[ "$relative" == "$cdir" ]]; then
+        echo "just build must be run in a submodule"
+        exit 1
+    fi
+
+build: verify-in-submodule
+    #!/usr/bin/env bash
+    cd {{invocation_directory()}}
+    uv run --project {{justfile_directory()}} jlpm build
+
+lint: verify-in-submodule
+    #!/usr/bin/env bash
+    cd {{invocation_directory()}}
+    uv run --project {{justfile_directory()}} jlpm lint
+
+pytest: verify-in-submodule
+    #!/usr/bin/env bash
+    cd {{invocation_directory()}}
+    uv run --project {{justfile_directory()}} pytest
+
+reinstall: verify-in-submodule
+    #!/usr/bin/env bash
+    uv sync
+    source {{justfile_directory()}}/.venv/bin/activate
+    cd {{invocation_directory()}}
+    pip install -e .
+    deactivate
