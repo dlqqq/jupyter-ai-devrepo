@@ -37,6 +37,8 @@ All `just` commands work from anywhere under the devrepo root.
 - *After editing Python files*, restart the JupyterLab server. No build needed.
 - *After editing `pyproject.toml`* in a submodule, run `just reinstall` in that submodule, then restart the server.
 - *After editing `pyproject.toml`* at the devrepo root, run `just sync`.
+- *After rebasing a submodule*, run `just build` to catch upstream type renames or API changes.
+- *When running `uv run` from a submodule directory*, use `uv run --project <devrepo-root>` to avoid creating an accidental `.venv` and `uv.lock` in the submodule. The `just` commands handle this automatically.
 
 ## Architecture
 
@@ -60,12 +62,14 @@ All `just` commands work from anywhere under the devrepo root.
 3. Persona processes the message and writes its response back to `YChat`
 4. Yjs syncs back to browser → React components re-render
 
-## Code Style
+## Code style
 
 - **TypeScript**: ESLint + Prettier. Single quotes, no trailing commas. Interfaces must start with `I` (e.g., `IToolCall`). CSS classes namespaced as `.jp-{package-name}-{component}`.
 - **Python**: PEP 8, 4-space indent. Relative imports within packages (`from .foo import bar`).
 - Version source of truth is `package.json` (synced to `pyproject.toml` via `hatch-nodejs-version`).
 - Use `jlpm` for JS package management, never `npm` or `yarn` directly.
+- Run `just lint` before pushing. CI checks lint in all submodules. Common catches: prettier line-length wrapping, stylelint lowercase CSS keywords (`currentcolor` not `currentColor`).
+- `just build`/`just lint` are devrepo wrappers. Submodule CI and reviewer instructions should use native commands (`jlpm build`, `jlpm test`, `jlpm run lint:check`).
 
 ## Submodule CLAUDE.md Files
 
