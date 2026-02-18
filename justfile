@@ -58,10 +58,10 @@ install-all: && build-all enable-extensions
     uv sync
 
 uninstall-all:
-    rm -rf .venv
-    rm uv.lock
+    rm -rf .venv; exit 0
+    rm uv.lock; exit 0
 
-reinstall-all: install-all && uninstall-all
+reinstall-all: uninstall-all && install-all
 
 clean:
     -rm *.chat 2>/dev/null
